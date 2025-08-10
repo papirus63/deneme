@@ -318,8 +318,6 @@ async def embed_upsert(payload: Dict[str, Any] = Body(...)):
     vec = await embed_text(text)
     await qdrant_upsert(pid, vec, {"text": text, **meta})
     return {"ok": True, "id": pid}
-    logger = logging.getLogger("uvicorn")
-    logger.info(f"upload ok: file={file.filename}, chunks={len(chunks)} source={source or 'upload'}")
     
 # ======= API: Query =======
 @app.post("/query", tags=["search"])
